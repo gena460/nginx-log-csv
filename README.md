@@ -1,39 +1,60 @@
-# 🧾 Nginx Log to CSV Converter
+# Nginx Log to CSV Converter
 
-A lightweight and portable tool to **parse Nginx access logs**, convert them into **CSV format**, and optionally **auto-commit the results to a Git repository**. Perfect for analytics, debugging, and integrations with data tools 📊.
+## Description
 
----
+This project parses nginx access logs, converts them to CSV format, and stores the result in Git.
 
-## ✨ Description
 
-This project reads standard **Nginx access logs**, extracts key request fields, and exports them into a clean **CSV file**.  
-You can filter, sort, and version your log exports with Git — all with a simple CLI or Docker container.
+## Features
 
----
+•	Parse nginx access log: IP, datetime, method, url, protocol, status, size, referer, user_agent
+•	Output CSV for analytics or integration
+•	Optionally filter by IP or HTTP status, or sort by datetime
+•	Commit the CSV export automatically to your Git repo
+•	Docker support for portable packaging
 
-## 🚀 Features
+## Usage
 
-- 🔍 Parse Nginx access logs into structured fields:
-  - IP address
-  - Datetime
-  - HTTP method
-  - URL
-  - Protocol
-  - Status code
-  - Response size
-  - Referer
-  - User agent
-- 📄 Export logs to **CSV** for analytics or data pipelines
-- 🎯 Optional filtering:
-  - By IP address
-  - By HTTP status code
-- ⏱ Sort results by datetime
-- 🧠 Automatically commit generated CSV files to Git
-- 🐳 **Docker support** for easy, portable execution
+# Build and run in Docker
 
----
+# With Docker
+docker build -t nginx-log-csv .
+# Run the container
+docker run --rm -v $(pwd):/app nginx-log-csv
 
-## 📦 Output CSV Format
+# Or, run locally:
 
-The generated CSV contains the following columns:
+```bash
+chmod +x run.sh
+./run.sh nginx.log nginx.csv –sort
+```
 
+
+# Script Options
+
+•	--filter-ip <ip>: Filter logs by IP address.
+•	--filter-status <code>: Filter by status code (e.g., 404).
+•	--sort: Sort results by date/time.
+
+
+# Output CSV Columns
+
+remote_addr | datetime | method | url | protocol | status | size | referer | user_agent |
+
+# Requirements
+
+•	Python 3
+•	Git (for auto-commit)
+•	Docker (optional)
+
+
+# Git Integration
+
+Initialize your Git repository (if needed)
+git init
+The resulting CSV file is automatically added and committed to the repo.
+
+
+## License
+
+Apache License 2.0
