@@ -1,33 +1,39 @@
-## Nginx Log to CSV Converter
+# 🧾 Nginx Log to CSV Converter
 
-# Description
-This project parses nginx access logs, converts them to CSV format, and stores the result in Git.
+A lightweight and portable tool to **parse Nginx access logs**, convert them into **CSV format**, and optionally **auto-commit the results to a Git repository**. Perfect for analytics, debugging, and integrations with data tools 📊.
 
-Usage
-Run with Docker:
-# Build the image
-docker build -t nginx-log-csv .
+---
 
-# Run the container
-docker run -v $(pwd):/app nginx-log-csv
+## ✨ Description
 
+This project reads standard **Nginx access logs**, extracts key request fields, and exports them into a clean **CSV file**.  
+You can filter, sort, and version your log exports with Git — all with a simple CLI or Docker container.
 
-Run Locally:
-# Convert log, filter by status, sort by time
-./run.sh nginx.log nginx.csv --filter-status 200 --sort
+---
 
-Script Options
-•	--filter-ip <ip>: Filter logs by IP address.
-•	--filter-status <code>: Filter by status code (e.g., 404).
-•	--sort: Sort results by date/time.
+## 🚀 Features
 
-Git Integration
-The resulting CSV file is automatically added and committed to the repo.
+- 🔍 Parse Nginx access logs into structured fields:
+  - IP address
+  - Datetime
+  - HTTP method
+  - URL
+  - Protocol
+  - Status code
+  - Response size
+  - Referer
+  - User agent
+- 📄 Export logs to **CSV** for analytics or data pipelines
+- 🎯 Optional filtering:
+  - By IP address
+  - By HTTP status code
+- ⏱ Sort results by datetime
+- 🧠 Automatically commit generated CSV files to Git
+- 🐳 **Docker support** for easy, portable execution
 
-Requirements
-•	Python 3
-•	Docker (optional)
+---
 
-Example Output
-remote_addr	remote_user	…	status	…
-127.0.0.1	-	…	200	…
+## 📦 Output CSV Format
+
+The generated CSV contains the following columns:
+
