@@ -1,6 +1,6 @@
-Nginx Log to CSV Converter
+## Nginx Log to CSV Converter
 
-Description
+# Description
 This project parses nginx access logs, converts them to CSV format, and stores the result in Git.
 
 Usage
